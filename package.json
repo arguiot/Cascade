@@ -1,0 +1,25 @@
+{
+  "name": "cascade.css",
+  "version": "0.0.1",
+  "description": "An innovative CSS preprocessor made of JavaScript",
+  "main": "dist/cascade.js",
+  "scripts": {
+    "test": "gulp && eye"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arguiot/Cascade.git"
+  },
+  "keywords": [
+    "css",
+    "preprocessor",
+    "cascade",
+    "stylesheets"
+  ],
+  "author": "Arthur Guiot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arguiot/Cascade/issues"
+  },
+  "homepage": "https://github.com/arguiot/Cascade#readme"
+}
