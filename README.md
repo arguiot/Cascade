@@ -12,4 +12,6 @@ C("button")
   .appendCSS(`
     border-radius: 5px;
   `) // if you want to add native CSS to the element, you can
+  
+C.save("path/to/file.css")
 ```
