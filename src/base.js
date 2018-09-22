@@ -8,7 +8,7 @@
 
 const Cascade = function() {
 	// Create the CSS object
-	this.css = []
+	this.css = {}
 	// Call the constructor
 	return Cascade.init(...arguments)
 }
