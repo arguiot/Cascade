@@ -2,5 +2,5 @@ Cascade.init = function() {
 	class cascade {
 		//= functions
 	}
-	return cascade(...arguments)
+	return new cascade(...arguments)
 }
