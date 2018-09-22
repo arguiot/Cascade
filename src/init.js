@@ -1,6 +1,6 @@
-Cascade.init = function() {
+Cascade.init = function(selector) {
 	class cascade {
 		//= functions
 	}
-	return new cascade(...arguments)
+	return new cascade(selector, this)
 }
