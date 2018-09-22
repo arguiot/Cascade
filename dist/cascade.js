@@ -16,13 +16,15 @@ const Cascade = function() {
 Cascade.init = function(selector) {
 	class cascade {
 		_addProp(key, value) {
-			console.log(this.c)
 			if (this.c.css.hasOwnProperty(this.s)) {
 				this.c.css[this.s][key] = value
 			} else {
 				this.c.css[this.s] = {}
 				this.c.css[this.s][key] = value
 			}
+		}
+		appendCSS(txt) {
+			this._addProp("externalCSS", txt)
 		}
 		background() {
 			const args = [...arguments]
@@ -69,6 +71,28 @@ Cascade.init = function(selector) {
 	return new cascade(selector, Cascade)
 }
 Cascade.css = {}
+Cascade.generateCSS = function() {
+	const css = this.css
+
+	let str = ""
+	for (let key of Object.keys(css)) {
+		str += `${key} {`
+
+		const obj = css[key]
+
+		for (let name of Object.keys(obj)) {
+			if (name == "externalCSS") {
+				str += obj[name]
+			} else {
+				str += `${name}: ${obj[name]};`
+			}
+		}
+
+		str += "}"
+	}
+
+	return str
+}
 
 // Browserify / Node.js
 if (typeof define === "function" && define.amd) {
