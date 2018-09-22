@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/arguiot/Cascade/issues"
   },
-  "homepage": "https://github.com/arguiot/Cascade#readme"
+  "homepage": "https://github.com/arguiot/Cascade#readme",
+  "devDependencies": {
+    "eye.js": "^1.1.2",
+    "gulp": "^3.9.1",
+    "gulp-inject-version": "^1.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-rigger": "^0.5.8"
+  }
 }
