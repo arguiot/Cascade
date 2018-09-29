@@ -5,16 +5,21 @@ center(param = "horizontally") {
 	}
 
 	const vertically = () => {
-		
+		this._addFunc(el => {
+			const parent = el.parentNode
+			parent.style.display = "flex";
+			parent.style["align-items"] = "center"
+		})
 	}
-
 
 	const both = () => {
-
+		this._addFunc(el => {
+			const parent = el.parentNode
+			parent.style.display = "flex";
+			parent.style["align-items"] = "center"
+			parent.style["justify-content"] = "center"
+		})
 	}
-
-
-
 
 	switch (param) {
 		case "horizontally":
