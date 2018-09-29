@@ -15,6 +15,13 @@ const Cascade = function() {
 
 Cascade.init = function(selector) {
 	class cascade {
+		_addFunc(f) {
+			const o = {
+				s: this.s,
+				f: f
+			}
+			this.c.js.push(o)
+		}
 		_addProp(key, value) {
 			if (this.c.css.hasOwnProperty(this.s)) {
 				this.c.css[this.s][key] = value
@@ -25,6 +32,7 @@ Cascade.init = function(selector) {
 		}
 		appendCSS(txt) {
 			this._addProp("externalCSS", txt)
+			return this
 		}
 		background() {
 			const args = [...arguments]
@@ -63,9 +71,74 @@ Cascade.init = function(selector) {
 		
 			return this
 		}
+		border() {
+			const args = [...arguments]
+		
+			if (args.length == 1) {
+				this._addProp("border", args[0])
+			} else if (args.length == 2) {
+				this._addProp(`border-${args[0]}`, args[1])
+			} else {
+				throw "[Cascade] Border: wrong arguments"
+			}
+			return this
+		}
+		center(param = "horizontally") {
+		
+			const horizontally = () => {
+				this._addProp("margin", "0 auto");
+			}
+		
+			const vertically = () => {
+				
+			}
+		
+		
+			const both = () => {
+		
+			}
+		
+		
+		
+		
+			switch (param) {
+				case "horizontally":
+					horizontally()
+					break;
+				case "vertically":
+					vertically()
+					break;
+				case "both":
+					both()
+					break;
+				default:
+					throw "[Cascade] Center: Wrong arguments"
+			}
+		}
 		constructor(selector, cascade) {
 			this.c = cascade
 			this.s = selector
+		}
+		mouse(prop) {
+			this._addProp("cursor", prop)
+		}
+		cursor(prop) {
+			this.mouse(prop)
+		}
+		display(method) {
+			this._addProp("display", method)
+			return this
+		}
+		mixin(name) {
+			if (this.c.mixins.hasOwnProperty(name)) {
+				return this.c.mixins[name](this)
+			}
+			throw "[Cascade] Mixins: wrong name"
+			return this
+		}
+		text_align(property) {
+			this._addProp("text-align", property)
+			return this
 		}
 	}
 	return new cascade(selector, Cascade)
@@ -92,6 +165,75 @@ Cascade.generateCSS = function() {
 	}
 
 	return str
+}
+Cascade.generateJS = function() {
+	const js = this.js
+	let methods = []
+	for (let o of js) {
+		methods.push({
+			s: o.s,
+			f: o.f.toString()
+		})
+	}
+	const json = JSON.stringify(methods)
+	console.log(json)
+	const model =
+	`
+class CascadeLoadScripts {
+constructor() {
+	this.loaded()
+}
+loaded() {
+	document.addEventListener("DOMContentLoaded", e => {
+		runScripts()
+	})
+}
+get scripts() {
+	return ${json}
+}
+runScripts() {
+	for (let o of this.scripts) {
+		try {
+			const s = o.s
+			const f = eval(o.f)
+
+			const el = document.querySelector(s)
+			f(el)
+		} catch (e) {
+			console.error(e)
+		}
+	}
+}
+}
+
+const CascadeScripts = new CascadeLoadScripts()
+	`
+	return model
+}
+Cascade.js = []
+Cascade.mixins = {}
+
+Cascade.newMixin = function(name, f) {
+	Cascade.mixins[name] = f
+}
+
+Cascade.loadModule = function(object) {
+	for (let i of Object.keys(object)) {
+		this.newMixin(i, object[i])
+	}
+}
+Cascade.save = function(pathCSS, pathJS) {
+	const fs = require("fs");
+	const streamCSS = fs.createWriteStream(pathCSS);
+	streamCSS.once('open', fd => {
+		streamCSS.write(this.generateCSS());
+		streamCSS.end();
+	});
+	const streamJS = fs.createWriteStream(pathJS);
+	streamJS.once('open', fd => {
+		streamJS.write(this.generateJS());
+		streamJS.end();
+	});
 }
 
 // Browserify / Node.js
