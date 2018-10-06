@@ -1,8 +1,12 @@
-_addProp(key, value) {
-	if (this.c.css.hasOwnProperty(this.s)) {
-		this.c.css[this.s][key] = value
+_addProp(key, value, s = false) {
+	let se = this.s
+	if (s === true) {
+		se = s
+	}
+	if (this.c.css.hasOwnProperty(se)) {
+		this.c.css[se][key] = value
 	} else {
-		this.c.css[this.s] = {}
-		this.c.css[this.s][key] = value
+		this.c.css[se] = {}
+		this.c.css[se][key] = value
 	}
 }

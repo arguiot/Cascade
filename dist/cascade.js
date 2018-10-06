@@ -22,13 +22,34 @@ Cascade.init = function(selector) {
 			}
 			this.c.js.push(o)
 		}
-		_addProp(key, value) {
-			if (this.c.css.hasOwnProperty(this.s)) {
-				this.c.css[this.s][key] = value
-			} else {
-				this.c.css[this.s] = {}
-				this.c.css[this.s][key] = value
+		_addProp(key, value, s = false) {
+			let se = this.s
+			if (s === true) {
+				se = s
 			}
+			if (this.c.css.hasOwnProperty(se)) {
+				this.c.css[se][key] = value
+			} else {
+				this.c.css[se] = {}
+				this.c.css[se][key] = value
+			}
+		}
+		align(param) {
+			switch (param) {
+				case "left":
+					this._addProp("postion", "absolute")
+					this._addProp("left", "0")
+					break;
+				case "center":
+					this.center()
+					break;
+				case "right":
+					this._addProp("postion", "absolute")
+					this._addProp("right", "0")
+					break;
+				default:
+			}
+			return this
 		}
 		appendCSS(txt) {
 			this._addProp("externalCSS", txt)
@@ -90,16 +111,21 @@ Cascade.init = function(selector) {
 			}
 		
 			const vertically = () => {
-				
+				this._addFunc(el => {
+					const parent = el.parentNode
+					parent.style.display = "flex";
+					parent.style["align-items"] = "center"
+				})
 			}
-		
 		
 			const both = () => {
-		
+				this._addFunc(el => {
+					const parent = el.parentNode
+					parent.style.display = "flex";
+					parent.style["align-items"] = "center"
+					parent.style["justify-content"] = "center"
+				})
 			}
-		
-		
-		
 		
 			switch (param) {
 				case "horizontally":
@@ -134,6 +160,13 @@ Cascade.init = function(selector) {
 				return this.c.mixins[name](this)
 			}
 			throw "[Cascade] Mixins: wrong name"
+			return this
+		}
+		onHover(f) {
+			const s = `${this.s}`
+			this.s = `${this.s}:hover`
+			f(this)
+			this.s = s
 			return this
 		}
 		text_align(property) {
