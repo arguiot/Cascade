@@ -18,7 +18,7 @@ background() {
 			// URL
 			this._addProp("background-image", args[0])
 		} else {
-			throw "[Cascade] Background: Wrong arguments"
+			this._addProp("background", args[0])
 		}
 	} else if (args.length == 2) {
 		// background property
