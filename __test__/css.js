@@ -45,3 +45,19 @@ eye.test("Borders", "node",
 		return $(C.generateCSS()).Equal(".border {border: 1px solid blue;}.radius {border-radius: 5px;}")
 	}
 )
+eye.test("Cursor", "node",
+	$ => {
+		C.css = {} // resets CSS
+		C(".pointer")
+			.cursor("pointer")
+		return $(C.generateCSS()).Equal(".pointer {cursor: pointer;}")
+	}
+)
+eye.test("Display", "node",
+	$ => {
+		C.css = {} // resets CSS
+		C(".flex")
+			.display("flex")
+		return $(C.generateCSS()).Equal(".flex {display: flex;}")
+	}
+)
