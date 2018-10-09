@@ -72,3 +72,15 @@ eye.describe("Basic modifiers", () => {
 		}
 	)
 })
+
+eye.describe("Events & Custom properties", () => {
+	eye.test("Hover", "node",
+		$ => {
+			C.css = {} // resets CSS
+			C(".button")
+				.background("blue")
+				.onHover(el => el.background("green"))
+			return $(C.generateCSS()).Equal(".button {background: blue;}.button:hover {background: green;}")
+		}
+	)
+})
