@@ -34,4 +34,5 @@ center(param = "horizontally") {
 		default:
 			throw "[Cascade] Center: Wrong arguments"
 	}
+	return this
 }

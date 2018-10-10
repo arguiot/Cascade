@@ -1,6 +1,7 @@
 mouse(prop) {
 	this._addProp("cursor", prop)
+	return this
 }
 cursor(prop) {
-	this.mouse(prop)
+	return this.mouse(prop)
 }

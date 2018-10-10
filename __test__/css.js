@@ -62,15 +62,24 @@ eye.describe("Basic modifiers", () => {
 			return $(C.generateCSS()).Equal(".flex {display: flex;}")
 		}
 	)
-
-	eye.test("Text align", "node",
-		$ => {
-			C.css = {} // resets CSS
-			C(".text")
-				.text_align("right")
-			return $(C.generateCSS()).Equal(".text {text-align: right;}")
-		}
-	)
+	eye.describe("Text", () => {
+		eye.test("Text align", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".text")
+					.text_align("right")
+				return $(C.generateCSS()).Equal(".text {text-align: right;}")
+			}
+		)
+		eye.test("Line Height", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".text")
+					.line_height(1.17)
+				return $(C.generateCSS()).Equal(".text {line-height: 1.17;}")
+			}
+		)
+	})
 })
 
 eye.describe("Events & Custom properties", () => {

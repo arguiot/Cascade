@@ -140,6 +140,7 @@ Cascade.init = function(selector) {
 				default:
 					throw "[Cascade] Center: Wrong arguments"
 			}
+			return this
 		}
 		constructor(selector, cascade) {
 			this.c = cascade
@@ -147,9 +148,10 @@ Cascade.init = function(selector) {
 		}
 		mouse(prop) {
 			this._addProp("cursor", prop)
+			return this
 		}
 		cursor(prop) {
-			this.mouse(prop)
+			return this.mouse(prop)
 		}
 		display(method) {
 			this._addProp("display", method)
@@ -167,6 +169,10 @@ Cascade.init = function(selector) {
 			this.s = `${this.s}:hover`
 			f(this)
 			this.s = s
+			return this
+		}
+		line_height(v) {
+			this._addProp("line-height", v)
 			return this
 		}
 		text_align(property) {
