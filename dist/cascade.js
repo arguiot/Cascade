@@ -157,6 +157,58 @@ Cascade.init = function(selector) {
 			this._addProp("display", method)
 			return this
 		}
+		align_content(opt) {
+			this._addProp("align-content", opt)
+			return this
+		}
+		align_items(opt) {
+			this._addProp("align-items", opt)
+			return this
+		}
+		align_self(opt) {
+			this._addProp("align-self", opt)
+			return this
+		}
+		flex(opt) {
+			this._addProp("flex", opt)
+			return this
+		}
+		flex_basis(length) {
+			this._addProp("flex-basis", length)
+			return this
+		}
+		flex_direction(dir) {
+			this._addProp("flex-direction", dir)
+			return this
+		}
+		flex_flow(opt) {
+			this._addProp("flex-flow", opt)
+			return this
+		}
+		flex_grow(n) {
+			this._addProp("flex_grow", n)
+			return this
+		}
+		flex_shrink(n) {
+			this._addProp("flex-shrink", n)
+			return this
+		}
+		flex_wrap(wrap) {
+			this._addProp("flex-wrap", wrap)
+			return this
+		}
+		flexify() {
+			this._addProp("display", "flex")
+			return this
+		}
+		justify_content(arg) {
+			this._addProp("justify-content", arg)
+			return this
+		}
+		order(int) {
+			this._addProp("order", int)
+			return this
+		}
 		mixin(name) {
 			if (this.c.mixins.hasOwnProperty(name)) {
 				return this.c.mixins[name](this)
@@ -171,12 +223,20 @@ Cascade.init = function(selector) {
 			this.s = s
 			return this
 		}
+		color(v) {
+			this._addProp("color", v)
+			return this
+		}
 		line_height(v) {
 			this._addProp("line-height", v)
 			return this
 		}
 		text_align(property) {
 			this._addProp("text-align", property)
+			return this
+		}
+		text_shadow() {
+			this._addProp("text-shadow", [...arguments].join(' '))
 			return this
 		}
 	}

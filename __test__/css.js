@@ -79,6 +79,22 @@ eye.describe("Basic modifiers", () => {
 				return $(C.generateCSS()).Equal(".text {line-height: 1.17;}")
 			}
 		)
+		eye.test("Color", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".text")
+					.color("#000")
+				return $(C.generateCSS()).Equal(".text {color: #000;}")
+			}
+		)
+		eye.test("Text Shadow", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".text")
+					.text_shadow("1px", "pink")
+				return $(C.generateCSS()).Equal(".text {text-shadow: 1px pink;}")
+			}
+		)
 	})
 })
 

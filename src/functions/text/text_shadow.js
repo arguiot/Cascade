@@ -1,4 +1,4 @@
-text_shadow(v) {
-	this._addProp("text-shadow", v)
+text_shadow() {
+	this._addProp("text-shadow", [...arguments].join(' '))
 	return this
 }
