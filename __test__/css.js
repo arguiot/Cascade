@@ -96,6 +96,62 @@ eye.describe("Basic modifiers", () => {
 			}
 		)
 	})
+	eye.describe("Flex Box", () => {
+		eye.test("Align Content", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.align_content("center")
+				return $(C.generateCSS()).Equal(".parent {display: flex;align-content: center;}")
+			}
+		)
+		eye.test("Align Items", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.align_items("flex-start")
+				return $(C.generateCSS()).Equal(".parent {display: flex;align-items: flex-start;}")
+			}
+		)
+		eye.test("Align Self", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".child")
+					.flexify()
+					.align_self("stretch")
+				return $(C.generateCSS()).Equal(".child {display: flex;align-self: stretch;}")
+			}
+		)
+		eye.test("Flex Basis", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.flex_basis("auto")
+				return $(C.generateCSS()).Equal(".parent {display: flex;flex-basis: auto;}")
+			}
+		)
+		eye.test("Flex Direction", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".child")
+					.flexify()
+					.flex_direction("column")
+				return $(C.generateCSS()).Equal(".child {display: flex;flex-direction: column;}")
+			}
+		)
+		eye.test("Flex Flow", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.flex_flow("row", "wrap")
+				return $(C.generateCSS()).Equal(".parent {display: flex;flex-flow: row wrap;}")
+			}
+		)
+	})
 })
 
 eye.describe("Events & Custom properties", () => {

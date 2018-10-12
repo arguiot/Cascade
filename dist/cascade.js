@@ -181,8 +181,8 @@ Cascade.init = function(selector) {
 			this._addProp("flex-direction", dir)
 			return this
 		}
-		flex_flow(opt) {
-			this._addProp("flex-flow", opt)
+		flex_flow() {
+			this._addProp("flex-flow", [...arguments].join(' '))
 			return this
 		}
 		flex_grow(n) {

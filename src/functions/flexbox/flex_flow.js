@@ -1,4 +1,4 @@
-flex_flow(opt) {
-	this._addProp("flex-flow", opt)
+flex_flow() {
+	this._addProp("flex-flow", [...arguments].join(' '))
 	return this
 }
