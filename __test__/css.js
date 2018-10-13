@@ -21,7 +21,6 @@ eye.describe("Basic modifiers", () => {
 			return $(C.generateCSS()).Equal("el {border-radius: 5px;}")
 		}
 	)
-
 	eye.test("Background", "node",
 		$ => {
 			C.css = {} // resets CSS
