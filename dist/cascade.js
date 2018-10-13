@@ -169,8 +169,8 @@ Cascade.init = function(selector) {
 			this._addProp("align-self", opt)
 			return this
 		}
-		flex(opt) {
-			this._addProp("flex", opt)
+		flex() {
+			this._addProp("flex", [...arguments].join(' '))
 			return this
 		}
 		flex_basis(length) {
@@ -186,7 +186,7 @@ Cascade.init = function(selector) {
 			return this
 		}
 		flex_grow(n) {
-			this._addProp("flex_grow", n)
+			this._addProp("flex-grow", n)
 			return this
 		}
 		flex_shrink(n) {

@@ -1,4 +1,4 @@
-flex(opt) {
-	this._addProp("flex", opt)
+flex() {
+	this._addProp("flex", [...arguments].join(' '))
 	return this
 }

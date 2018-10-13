@@ -151,6 +151,59 @@ eye.describe("Basic modifiers", () => {
 				return $(C.generateCSS()).Equal(".parent {display: flex;flex-flow: row wrap;}")
 			}
 		)
+		eye.test("Flex Grow", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.flex_grow(.6)
+				return $(C.generateCSS()).Equal(".parent {display: flex;flex-grow: 0.6;}")
+			}
+		)
+		eye.test("Flex Shrink", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.flex_shrink(2)
+				return $(C.generateCSS()).Equal(".parent {display: flex;flex-shrink: 2;}")
+			}
+		)
+		eye.test("Flex Wrap", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.flex_wrap("wrap")
+				return $(C.generateCSS()).Equal(".parent {display: flex;flex-wrap: wrap;}")
+			}
+		)
+		eye.test("Flex", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.flex(1, 1, "30px")
+				return $(C.generateCSS()).Equal(".parent {display: flex;flex: 1 1 30px;}")
+			}
+		)
+		eye.test("Justify Content", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".parent")
+					.flexify()
+					.justify_content("center")
+				return $(C.generateCSS()).Equal(".parent {display: flex;justify-content: center;}")
+			}
+		)
+		eye.test("Order", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C(".child")
+					.order(2)
+				return $(C.generateCSS()).Equal(".child {order: 2;}")
+			}
+		)
 	})
 })
 
