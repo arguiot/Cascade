@@ -1,0 +1,1 @@
+Cascade.all = Cascade.init("*")
