@@ -207,6 +207,15 @@ eye.describe("Basic modifiers", () => {
 })
 
 eye.describe("Events & Custom properties", () => {
+	eye.test("All & Body", "node",
+		$ => {
+			C.css = {} // resets CSS
+			C.body
+				.background("blue")
+			C.all.background("green")
+			return $(C.generateCSS()).Equal("body {background: blue;}* {background: green;}")
+		}
+	)
 	eye.test("Hover", "node",
 		$ => {
 			C.css = {} // resets CSS

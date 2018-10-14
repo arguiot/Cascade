@@ -242,6 +242,8 @@ Cascade.init = function(selector) {
 	}
 	return new cascade(selector, Cascade)
 }
+Cascade.all = Cascade.init("*")
+Cascade.body = Cascade.init("body")
 Cascade.css = {}
 Cascade.generateCSS = function() {
 	const css = this.css
