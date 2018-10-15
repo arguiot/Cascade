@@ -1,7 +1,7 @@
-_addProp(key, value, s = false) {
+_addProp(key, value, s = false, n) {
 	let se = this.s
 	if (s === true) {
-		se = s
+		se = n
 	}
 	if (this.c.css.hasOwnProperty(se)) {
 		this.c.css[se][key] = value
