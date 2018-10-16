@@ -226,3 +226,17 @@ eye.describe("Events & Custom properties", () => {
 		}
 	)
 })
+
+eye.describe("Media Queries", () => {
+	eye.test("Render", "node",
+		$ => {
+			C.css = {}
+			C.mediaQuery("(min-height: 200px)", {
+				".button": {
+					"background": "green"
+				}
+			})
+			return $(C.generateCSS()).Equal("@media (min-height: 200px) {.button {background: green;}}")
+		}
+	)
+})

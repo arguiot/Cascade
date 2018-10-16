@@ -3,9 +3,10 @@ Cascade.mediaQuery = function(selector, css) {
 		selector: selector,
 		css: css
 	}
-	if (this.css.hasOwnProperty("*media*")) {
-		this.css["*media*"] = [array]
+	if (this.css.hasOwnProperty("*media*") || this.css["*media*"] != "undefined") {
+		this.css["*media*"] = new Array(array)
 	} else {
+		console.log(this.css["*media*"])
 		this.css["*media*"].push(array)
 	}
 }

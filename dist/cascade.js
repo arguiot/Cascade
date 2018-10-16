@@ -22,10 +22,10 @@ Cascade.init = function(selector) {
 			}
 			this.c.js.push(o)
 		}
-		_addProp(key, value, s = false) {
+		_addProp(key, value, s = false, n) {
 			let se = this.s
 			if (s === true) {
-				se = s
+				se = n
 			}
 			if (this.c.css.hasOwnProperty(se)) {
 				this.c.css[se][key] = value
@@ -250,9 +250,26 @@ Cascade.generateCSS = function() {
 
 	let str = ""
 	for (let key of Object.keys(css)) {
-		str += `${key} {`
+		if (key == "*media*") {
+			for (let query of css["*media*"]) {
+				const selector = query.selector
+				const mediaCSS = query.css
 
-		const obj = css[key]
+				str += `@media ${selector} {`
+				for (let i of Object.keys(mediaCSS)) {
+					str += renderCSS(i, mediaCSS[i])
+				}
+				str += "}"
+			}
+		} else {
+			str += renderCSS(key, css[key])
+		}
+	}
+
+	return str
+
+	function renderCSS(key, obj) {
+		let str = `${key} {`
 
 		for (let name of Object.keys(obj)) {
 			if (name == "externalCSS") {
@@ -261,11 +278,9 @@ Cascade.generateCSS = function() {
 				str += `${name}: ${obj[name]};`
 			}
 		}
-
 		str += "}"
+		return str
 	}
-
-	return str
 }
 Cascade.generateJS = function() {
 	const js = this.js
@@ -312,6 +327,18 @@ const CascadeScripts = new CascadeLoadScripts()
 	return model
 }
 Cascade.js = []
+Cascade.mediaQuery = function(selector, css) {
+	const array = {
+		selector: selector,
+		css: css
+	}
+	if (this.css.hasOwnProperty("*media*") || this.css["*media*"] != "undefined") {
+		this.css["*media*"] = new Array(array)
+	} else {
+		console.log(this.css["*media*"])
+		this.css["*media*"].push(array)
+	}
+}
 Cascade.mixins = {}
 
 Cascade.newMixin = function(name, f) {

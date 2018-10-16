@@ -3,14 +3,14 @@ Cascade.generateCSS = function() {
 
 	let str = ""
 	for (let key of Object.keys(css)) {
-		if (name == "*media*") {
-			for (let query of obj["*media*"]) {
+		if (key == "*media*") {
+			for (let query of css["*media*"]) {
 				const selector = query.selector
 				const mediaCSS = query.css
 
 				str += `@media ${selector} {`
 				for (let i of Object.keys(mediaCSS)) {
-					str + renderCSS(i, mediaCSS[i])
+					str += renderCSS(i, mediaCSS[i])
 				}
 				str += "}"
 			}
