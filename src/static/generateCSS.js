@@ -3,9 +3,26 @@ Cascade.generateCSS = function() {
 
 	let str = ""
 	for (let key of Object.keys(css)) {
-		str += `${key} {`
+		if (name == "*media*") {
+			for (let query of obj["*media*"]) {
+				const selector = query.selector
+				const mediaCSS = query.css
 
-		const obj = css[key]
+				str += `@media ${selector} {`
+				for (let i of Object.keys(mediaCSS)) {
+					str + renderCSS(i, mediaCSS[i])
+				}
+				str += "}"
+			}
+		} else {
+			str += renderCSS(key, css[key])
+		}
+	}
+
+	return str
+
+	function renderCSS(key, obj) {
+		let str = `${key} {`
 
 		for (let name of Object.keys(obj)) {
 			if (name == "externalCSS") {
@@ -14,9 +31,7 @@ Cascade.generateCSS = function() {
 				str += `${name}: ${obj[name]};`
 			}
 		}
-
 		str += "}"
+		return str
 	}
-
-	return str
 }
