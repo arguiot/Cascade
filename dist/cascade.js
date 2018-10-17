@@ -27,11 +27,30 @@ Cascade.funcClass = function() {
 			if (s === true) {
 				se = n
 			}
-			if (this.c.css.hasOwnProperty(se)) {
-				this.c.css[se][key] = value
-			} else {
-				this.c.css[se] = {}
-				this.c.css[se][key] = value
+			const normal = () => {
+				if (this.c.css.hasOwnProperty(se)) {
+					this.c.css[se][key] = value
+				} else {
+					this.c.css[se] = {}
+					this.c.css[se][key] = value
+				}
+			}
+			
+			switch (this.c.mode) {
+				case 0:
+					normal()
+					break;
+				case 1:
+					if (this.c.media.hasOwnProperty(se)) {
+						this.c.media[se][key] = value
+					} else {
+						this.c.media[se] = {}
+						this.c.media[se][key] = value
+					}
+					break;
+				default:
+					normal()
+		
 			}
 		}
 		align(param) {
@@ -322,6 +341,13 @@ Cascade.mediaQuery = function(selector, css) {
 		this.css["*media*"].push(array)
 	}
 }
+Cascade.media = function(selector, callback) {
+	this.mode = 1
+	this.medias = {}
+	callback(this)
+	this.mode = 0
+	this.mediaQuery(selector, this.media)
+}
 Cascade.mixins = {}
 
 Cascade.newMixin = function(name, f) {
@@ -333,6 +359,9 @@ Cascade.loadModule = function(object) {
 		this.newMixin(i, object[i])
 	}
 }
+Cascade.mode = 0 // 0: Normal
+				 // 1: Media Query
+				 // 2: Keyframes
 Cascade.save = function(pathCSS, pathJS) {
 	const fs = require("fs");
 	const streamCSS = fs.createWriteStream(pathCSS);
