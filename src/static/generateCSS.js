@@ -14,6 +14,17 @@ Cascade.generateCSS = function() {
 				}
 				str += "}"
 			}
+		} else if (key == "*keyframe*") {
+			for (let keyframe of css["*keyframe*"]) {
+				const name = keyframe.name
+				const points = keyframe.timeline
+
+				str += `@keyframes ${name} {`
+				for (let i of Object.keys(points)) {
+					str += renderCSS(i, points[i])
+				}
+				str += "}"
+			}
 		} else {
 			str += renderCSS(key, css[key])
 		}
