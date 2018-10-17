@@ -13,8 +13,8 @@ const Cascade = function() {
 
 // Static methods
 
-Cascade.init = function(selector) {
-	class cascade {
+Cascade.funcClass = function() {
+	return class {
 		_addFunc(f) {
 			const o = {
 				s: this.s,
@@ -240,6 +240,9 @@ Cascade.init = function(selector) {
 			return this
 		}
 	}
+}
+Cascade.init = function(selector) {
+	const cascade = this.funcClass()
 	return new cascade(selector, Cascade)
 }
 Cascade.all = Cascade.init("*")

@@ -13,6 +13,7 @@ const Cascade = function() {
 
 // Static methods
 
+//= funcClass.js
 //= init.js
 //= static
 

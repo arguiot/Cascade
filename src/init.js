@@ -1,6 +1,4 @@
 Cascade.init = function(selector) {
-	class cascade {
-		//= functions
-	}
+	const cascade = this.funcClass()
 	return new cascade(selector, Cascade)
 }
