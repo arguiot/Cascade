@@ -1,4 +1,4 @@
 appendCSS(txt) {
-	this._addProp("externalCSS", txt)
+	this._addProp("*externalCSS*", txt)
 	return this
 }

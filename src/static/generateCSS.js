@@ -25,7 +25,7 @@ Cascade.generateCSS = function() {
 		let str = `${key} {`
 
 		for (let name of Object.keys(obj)) {
-			if (name == "externalCSS") {
+			if (name == "*externalCSS*") {
 				str += obj[name]
 			} else {
 				str += `${name}: ${obj[name]};`
