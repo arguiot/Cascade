@@ -17,3 +17,4 @@ Cascade.media = function(selector, callback) {
 	this.mode = 0
 	this.mediaQuery(selector, this.media)
 }
+//= mediaTypes
