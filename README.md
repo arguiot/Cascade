@@ -6,7 +6,7 @@ Exemple of what you can do with Cascade:
 const C = require("cascade");
 
 C("button")
-  .align("center") // will center (horizontally the element for you
+  .center() // will center (horizontally) the element for you
   .background("#292929") // will set the background color to #292929
   .hover(b => b.text.underline(true)) // on hover, the text will appear underlined
   .appendCSS(`
