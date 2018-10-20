@@ -249,4 +249,14 @@ eye.describe("Media Queries", () => {
 			return $(C.generateCSS()).Equal("@media (min-height: 200px) {.button {background: green;}}")
 		}
 	)
+	eye.test("Operators", "node",
+		$ => {
+			C.css = {} // empty css
+			C.media(C.min_height(200) + C.and + C.screen, c => {
+				c(".button")
+					.background("green")
+			})
+			return $(C.generateCSS()).Equal("@media (min-height: 200px) and screen {.button {background: green;}}")
+		}
+	)
 })

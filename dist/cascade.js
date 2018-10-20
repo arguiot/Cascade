@@ -348,6 +348,23 @@ Cascade.media = function(selector, callback) {
 	this.mode = 0
 	this.mediaQuery(selector, this.media)
 }
+Cascade.min_height = function(v, u = "px") {
+	return `(min-height: ${v}${u})`
+}
+Cascade.min_width = function(v, u = "px") {
+	return `(min-width: ${v}${u})`
+}
+Cascade.mobile = "only screen and (min-device-width : 320px) and (max-device-width : 480px)"
+Cascade.and = " and "
+Cascade.not = " not "
+Cascade.or = " or "
+Cascade.comma = ", "
+Cascade.only = " only "
+Cascade.print = "print"
+Cascade.query = function(prop, value) {
+	return `(${prop}: ${value})`
+}
+Cascade.screen = "screen"
 Cascade.mixins = {}
 
 Cascade.newMixin = function(name, f) {
