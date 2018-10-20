@@ -11,17 +11,25 @@ _addProp(key, value, s = false, n) {
 			this.c.css[se][key] = value
 		}
 	}
-	
+
 	switch (this.c.mode) {
 		case 0:
 			normal()
 			break;
-		case 1:
+		case 1: // media queries
 			if (this.c.media.hasOwnProperty(se)) {
 				this.c.media[se][key] = value
 			} else {
 				this.c.media[se] = {}
 				this.c.media[se][key] = value
+			}
+			break;
+		case 2: // keyframes
+			if (this.c.keyframe.hasOwnProperty(se)) {
+				this.c.keyframe[se][key] = value
+			} else {
+				this.c.keyframe[se] = {}
+				this.c.keyframe[se][key] = value
 			}
 			break;
 		default:
