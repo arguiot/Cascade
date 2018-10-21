@@ -29,5 +29,8 @@
     "gulp-inject-version": "^1.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-rigger": "^0.5.8"
+  },
+  "dependencies": {
+    "sync-request": "^6.0.0"
   }
 }

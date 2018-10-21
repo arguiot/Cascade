@@ -94,6 +94,14 @@ eye.describe("Basic modifiers", () => {
 				return $(C.generateCSS()).Equal(".text {text-shadow: 1px pink;}")
 			}
 		)
+		eye.test("Font Face", "node",
+			$ => {
+				C.css = {} // resets CSS
+				C.fontFace("Helvetica")
+				C.fontFace("InterUI", "https://server.com/InterUI.ttf")
+				return $(C.generateCSS()).Equal("@font-face {  font-family: 'Helvetica';  font-style: normal;  font-weight: 400;  src: local('Helvetica LT Pro'), local('HelveticaLTPro-Roman'), url(https://fonts.gstatic.com/l/font?kit=JIAxUVNqfH9WuVQQRM4zVxOi&skey=22efecd2bc0e2cb0&v=v2) format('truetype');}@font-face {font-family: InterUI;src: https://server.com/InterUI.ttf;}")
+			}
+		)
 	})
 	eye.describe("Flex Box", () => {
 		eye.test("Align Content", "node",
