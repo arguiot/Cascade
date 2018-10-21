@@ -21,7 +21,12 @@ Cascade.generateCSS = function() {
 
 				str += `@keyframes ${name} {`
 				for (let i of Object.keys(points)) {
-					str += renderCSS(i, points[i])
+					if (isNaN(parseInt(i))) {
+						str += renderCSS(i, points[i])
+					} else {
+						str += renderCSS(`${i}%`, points[i])
+					}
+
 				}
 				str += "}"
 			}
