@@ -273,4 +273,14 @@ eye.describe("Keyframes", () => {
 			return $(C.generateCSS()).Equal("@keyframes name {100% {background: green;}}")
 		}
 	)
+	eye.test("Constructor", "node",
+		$ => {
+			C.css = {} // empty CSS
+			C.keyframes("name", c => {
+				c(C.to)
+					.background('green')
+			})
+			return $(C.generateCSS()).Equal("@keyframes name {100% {background: green;}}")
+		}
+	)
 })

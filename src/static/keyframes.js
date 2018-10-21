@@ -15,6 +15,6 @@ Cascade.keyframes = function(selector, callback) {
 	this.keyframe = {}
 	callback(this)
 	this.mode = 0
-	this.mediaQuery(selector, this.media)
+	this.keyframesGen(selector, this.keyframe)
 }
 //= keys
