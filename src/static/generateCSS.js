@@ -30,6 +30,8 @@ Cascade.generateCSS = function() {
 				}
 				str += "}"
 			}
+		} else if (key == "*font-face*") {
+			str += css["*font-face*"] // paste it as it is
 		} else {
 			str += renderCSS(key, css[key])
 		}
