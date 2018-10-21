@@ -35,17 +35,25 @@ Cascade.funcClass = function() {
 					this.c.css[se][key] = value
 				}
 			}
-			
+		
 			switch (this.c.mode) {
 				case 0:
 					normal()
 					break;
-				case 1:
+				case 1: // media queries
 					if (this.c.media.hasOwnProperty(se)) {
 						this.c.media[se][key] = value
 					} else {
 						this.c.media[se] = {}
 						this.c.media[se][key] = value
+					}
+					break;
+				case 2: // keyframes
+					if (this.c.keyframe.hasOwnProperty(se)) {
+						this.c.keyframe[se][key] = value
+					} else {
+						this.c.keyframe[se] = {}
+						this.c.keyframe[se][key] = value
 					}
 					break;
 				default:
@@ -290,7 +298,12 @@ Cascade.generateCSS = function() {
 
 				str += `@keyframes ${name} {`
 				for (let i of Object.keys(points)) {
-					str += renderCSS(i, points[i])
+					if (isNaN(parseInt(i))) {
+						str += renderCSS(i, points[i])
+					} else {
+						str += renderCSS(`${i}%`, points[i])
+					}
+
 				}
 				str += "}"
 			}
@@ -329,6 +342,27 @@ Cascade.generateJS = function() {
 	return model
 }
 Cascade.js = []
+Cascade.keyframesGen = function(selector, css) {
+	const array = {
+		name: selector,
+		timeline: css
+	}
+	if (this.css.hasOwnProperty("*keyframe*") || this.css["*keyframe*"] != "undefined") {
+		this.css["*keyframe*"] = new Array(array)
+	} else {
+		console.log(this.css["*keyframe*"])
+		this.css["*keyframe*"].push(array)
+	}
+}
+Cascade.keyframes = function(selector, callback) {
+	this.mode = 2
+	this.keyframe = {}
+	callback(this)
+	this.mode = 0
+	this.mediaQuery(selector, this.media)
+}
+Cascade.from = 0
+Cascade.to = 100
 Cascade.mediaQuery = function(selector, css) {
 	const array = {
 		selector: selector,

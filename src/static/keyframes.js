@@ -1,13 +1,13 @@
 Cascade.keyframesGen = function(selector, css) {
 	const array = {
-		selector: selector,
-		css: css
+		name: selector,
+		timeline: css
 	}
-	if (this.css.hasOwnProperty("*media*") || this.css["*media*"] != "undefined") {
-		this.css["*media*"] = new Array(array)
+	if (this.css.hasOwnProperty("*keyframe*") || this.css["*keyframe*"] != "undefined") {
+		this.css["*keyframe*"] = new Array(array)
 	} else {
-		console.log(this.css["*media*"])
-		this.css["*media*"].push(array)
+		console.log(this.css["*keyframe*"])
+		this.css["*keyframe*"].push(array)
 	}
 }
 Cascade.keyframes = function(selector, callback) {

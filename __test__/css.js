@@ -260,3 +260,17 @@ eye.describe("Media Queries", () => {
 		}
 	)
 })
+
+eye.describe("Keyframes", () => {
+	eye.test("Render", "node",
+		$ => {
+			C.css = {}
+			C.keyframesGen("name", {
+				"100": {
+					"background": "green"
+				}
+			})
+			return $(C.generateCSS()).Equal("@keyframes name {100% {background: green;}}")
+		}
+	)
+})
