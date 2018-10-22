@@ -10,7 +10,7 @@ eye.describe("Basic modifiers", () => {
 				.align("center")
 			C(".right")
 				.align("right")
-			return $(C.generateCSS()).Equal(".left {postion: absolute;left: 0;}.center {margin: 0 auto;}.right {postion: absolute;right: 0;}")
+			return $(C.generateCSS()).Equal(".left{postion:absolute;left:0}.center{margin:0 auto}.right{postion:absolute;right:0}")
 		}
 	)
 	eye.test("Append CSS", "node",
@@ -18,7 +18,7 @@ eye.describe("Basic modifiers", () => {
 			C.css = {} // resets CSS
 			C("el")
 				.appendCSS("border-radius: 5px;")
-			return $(C.generateCSS()).Equal("el {border-radius: 5px;}")
+			return $(C.generateCSS()).Equal("el{border-radius:5px}")
 		}
 	)
 	eye.test("Background", "node",
@@ -32,7 +32,7 @@ eye.describe("Basic modifiers", () => {
 				.background(255, 255, 255)
 			C(".rgba")
 				.background(55, 28, 104, 0.4)
-			return $(C.generateCSS()).Equal(".hex {background-color: #000;}.img {background-image: ./img/img.png;}.rgb {background-color: rgb(255, 255, 255);}.rgba {background-color: rgba(55, 28, 104, 0.4);}")
+			return $(C.generateCSS()).Equal(".hex{background-color:#000}.img{background-image:./img/img.png}.rgb{background-color:#fff}.rgba{background-color:rgba(55,28,104,.4)}")
 		}
 	)
 	eye.test("Borders", "node",
@@ -42,7 +42,7 @@ eye.describe("Basic modifiers", () => {
 				.border("1px solid blue")
 			C(".radius")
 				.border("radius", "5px")
-			return $(C.generateCSS()).Equal(".border {border: 1px solid blue;}.radius {border-radius: 5px;}")
+			return $(C.generateCSS()).Equal(".border{border:1px solid #00f}.radius{border-radius:5px}")
 		}
 	)
 	eye.test("Cursor", "node",
@@ -50,7 +50,7 @@ eye.describe("Basic modifiers", () => {
 			C.css = {} // resets CSS
 			C(".pointer")
 				.cursor("pointer")
-			return $(C.generateCSS()).Equal(".pointer {cursor: pointer;}")
+			return $(C.generateCSS()).Equal(".pointer{cursor:pointer}")
 		}
 	)
 	eye.test("Display", "node",
@@ -58,7 +58,7 @@ eye.describe("Basic modifiers", () => {
 			C.css = {} // resets CSS
 			C(".flex")
 				.display("flex")
-			return $(C.generateCSS()).Equal(".flex {display: flex;}")
+			return $(C.generateCSS()).Equal(".flex{display:flex}")
 		}
 	)
 	eye.describe("Text", () => {
@@ -67,7 +67,7 @@ eye.describe("Basic modifiers", () => {
 				C.css = {} // resets CSS
 				C(".text")
 					.text_align("right")
-				return $(C.generateCSS()).Equal(".text {text-align: right;}")
+				return $(C.generateCSS()).Equal(".text{text-align:right}")
 			}
 		)
 		eye.test("Line Height", "node",
@@ -75,7 +75,7 @@ eye.describe("Basic modifiers", () => {
 				C.css = {} // resets CSS
 				C(".text")
 					.line_height(1.17)
-				return $(C.generateCSS()).Equal(".text {line-height: 1.17;}")
+				return $(C.generateCSS()).Equal(".text{line-height:1.17}")
 			}
 		)
 		eye.test("Color", "node",
@@ -83,7 +83,7 @@ eye.describe("Basic modifiers", () => {
 				C.css = {} // resets CSS
 				C(".text")
 					.color("#000")
-				return $(C.generateCSS()).Equal(".text {color: #000;}")
+				return $(C.generateCSS()).Equal(".text{color:#000}")
 			}
 		)
 		eye.test("Text Shadow", "node",
@@ -91,7 +91,7 @@ eye.describe("Basic modifiers", () => {
 				C.css = {} // resets CSS
 				C(".text")
 					.text_shadow("1px", "pink")
-				return $(C.generateCSS()).Equal(".text {text-shadow: 1px pink;}")
+				return $(C.generateCSS()).Equal(".text{text-shadow:1px pink}")
 			}
 		)
 		eye.test("Font Face", "node",
@@ -99,7 +99,7 @@ eye.describe("Basic modifiers", () => {
 				C.css = {} // resets CSS
 				C.fontFace("Helvetica")
 				C.fontFace("InterUI", "https://server.com/InterUI.ttf")
-				return $(C.generateCSS()).Equal("@font-face {  font-family: 'Helvetica';  font-style: normal;  font-weight: 400;  src: local('Helvetica LT Pro'), local('HelveticaLTPro-Roman'), url(https://fonts.gstatic.com/l/font?kit=JIAxUVNqfH9WuVQQRM4zVxOi&skey=22efecd2bc0e2cb0&v=v2) format('truetype');}@font-face {font-family: InterUI;src: https://server.com/InterUI.ttf;}")
+				return $(C.generateCSS()).Equal("@font-face{font-family:'Helvetica';font-style:normal;font-weight:400;src:local('Helvetica LT Pro'),local('HelveticaLTPro-Roman'),url(https://fonts.gstatic.com/l/font?kit=JIAxUVNqfH9WuVQQRM4zVxOi&skey=22efecd2bc0e2cb0&v=v2) format('truetype')}@font-face{font-family:InterUI;src:https://server.com/InterUI.ttf}")
 			}
 		)
 	})
@@ -110,7 +110,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.align_content("center")
-				return $(C.generateCSS()).Equal(".parent {display: flex;align-content: center;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;align-content:center}")
 			}
 		)
 		eye.test("Align Items", "node",
@@ -119,7 +119,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.align_items("flex-start")
-				return $(C.generateCSS()).Equal(".parent {display: flex;align-items: flex-start;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;align-items:flex-start}")
 			}
 		)
 		eye.test("Align Self", "node",
@@ -128,7 +128,7 @@ eye.describe("Basic modifiers", () => {
 				C(".child")
 					.flexify()
 					.align_self("stretch")
-				return $(C.generateCSS()).Equal(".child {display: flex;align-self: stretch;}")
+				return $(C.generateCSS()).Equal(".child{display:flex;align-self:stretch}")
 			}
 		)
 		eye.test("Flex Basis", "node",
@@ -137,7 +137,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.flex_basis("auto")
-				return $(C.generateCSS()).Equal(".parent {display: flex;flex-basis: auto;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;flex-basis:auto}")
 			}
 		)
 		eye.test("Flex Direction", "node",
@@ -146,7 +146,7 @@ eye.describe("Basic modifiers", () => {
 				C(".child")
 					.flexify()
 					.flex_direction("column")
-				return $(C.generateCSS()).Equal(".child {display: flex;flex-direction: column;}")
+				return $(C.generateCSS()).Equal(".child{display:flex;flex-direction:column}")
 			}
 		)
 		eye.test("Flex Flow", "node",
@@ -155,7 +155,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.flex_flow("row", "wrap")
-				return $(C.generateCSS()).Equal(".parent {display: flex;flex-flow: row wrap;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;flex-flow:row wrap}")
 			}
 		)
 		eye.test("Flex Grow", "node",
@@ -164,7 +164,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.flex_grow(.6)
-				return $(C.generateCSS()).Equal(".parent {display: flex;flex-grow: 0.6;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;flex-grow:.6}")
 			}
 		)
 		eye.test("Flex Shrink", "node",
@@ -173,7 +173,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.flex_shrink(2)
-				return $(C.generateCSS()).Equal(".parent {display: flex;flex-shrink: 2;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;flex-shrink:2}")
 			}
 		)
 		eye.test("Flex Wrap", "node",
@@ -182,7 +182,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.flex_wrap("wrap")
-				return $(C.generateCSS()).Equal(".parent {display: flex;flex-wrap: wrap;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;flex-wrap:wrap}")
 			}
 		)
 		eye.test("Flex", "node",
@@ -191,7 +191,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.flex(1, 1, "30px")
-				return $(C.generateCSS()).Equal(".parent {display: flex;flex: 1 1 30px;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;flex:1 1 30px}")
 			}
 		)
 		eye.test("Justify Content", "node",
@@ -200,7 +200,7 @@ eye.describe("Basic modifiers", () => {
 				C(".parent")
 					.flexify()
 					.justify_content("center")
-				return $(C.generateCSS()).Equal(".parent {display: flex;justify-content: center;}")
+				return $(C.generateCSS()).Equal(".parent{display:flex;justify-content:center}")
 			}
 		)
 		eye.test("Order", "node",
@@ -208,7 +208,7 @@ eye.describe("Basic modifiers", () => {
 				C.css = {} // resets CSS
 				C(".child")
 					.order(2)
-				return $(C.generateCSS()).Equal(".child {order: 2;}")
+				return $(C.generateCSS()).Equal(".child{order:2}")
 			}
 		)
 	})
@@ -221,7 +221,7 @@ eye.describe("Events & Custom properties", () => {
 			C.body
 				.background("blue")
 			C.all.background("green")
-			return $(C.generateCSS()).Equal("body {background: blue;}* {background: green;}")
+			return $(C.generateCSS()).Equal("body{background:#00f}*{background:green}")
 		}
 	)
 	eye.test("Hover", "node",
@@ -230,7 +230,7 @@ eye.describe("Events & Custom properties", () => {
 			C(".button")
 				.background("blue")
 				.onHover(el => el.background("green"))
-			return $(C.generateCSS()).Equal(".button {background: blue;}.button:hover {background: green;}")
+			return $(C.generateCSS()).Equal(".button{background:#00f}.button:hover{background:green}")
 		}
 	)
 })
@@ -244,7 +244,7 @@ eye.describe("Media Queries", () => {
 					"background": "green"
 				}
 			})
-			return $(C.generateCSS()).Equal("@media (min-height: 200px) {.button {background: green;}}")
+			return $(C.generateCSS()).Equal("@media (min-height:200px){.button{background:green}}")
 		}
 	)
 	eye.test("Constructor", "node",
@@ -254,7 +254,7 @@ eye.describe("Media Queries", () => {
 				c(".button")
 					.background("green")
 			})
-			return $(C.generateCSS()).Equal("@media (min-height: 200px) {.button {background: green;}}")
+			return $(C.generateCSS()).Equal("@media (min-height:200px){.button{background:green}}")
 		}
 	)
 	eye.test("Operators", "node",
@@ -264,7 +264,7 @@ eye.describe("Media Queries", () => {
 				c(".button")
 					.background("green")
 			})
-			return $(C.generateCSS()).Equal("@media (min-height: 200px) and screen {.button {background: green;}}")
+			return $(C.generateCSS()).Equal("@media (min-height:200px) and screen{.button{background:green}}")
 		}
 	)
 })
@@ -278,7 +278,7 @@ eye.describe("Keyframes", () => {
 					"background": "green"
 				}
 			})
-			return $(C.generateCSS()).Equal("@keyframes name {100% {background: green;}}")
+			return $(C.generateCSS()).Equal("@keyframes name{to{background:green}}")
 		}
 	)
 	eye.test("Constructor", "node",
@@ -288,7 +288,7 @@ eye.describe("Keyframes", () => {
 				c(C.to)
 					.background('green')
 			})
-			return $(C.generateCSS()).Equal("@keyframes name {100% {background: green;}}")
+			return $(C.generateCSS()).Equal("@keyframes name{to{background:green}}")
 		}
 	)
 })

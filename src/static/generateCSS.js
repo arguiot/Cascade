@@ -36,8 +36,10 @@ Cascade.generateCSS = function() {
 			str += renderCSS(key, css[key])
 		}
 	}
+	const csso = require('csso');
 
-	return str
+	const minified = csso.minify(str).css
+	return minified
 
 	function renderCSS(key, obj) {
 		let str = `${key} {`

@@ -31,6 +31,7 @@
     "gulp-rigger": "^0.5.8"
   },
   "dependencies": {
+    "csso": "^3.5.1",
     "sync-request": "^6.0.0"
   }
 }
