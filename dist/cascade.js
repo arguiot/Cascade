@@ -306,6 +306,23 @@ Cascade.funcClass = function() {
 				}
 			}
 		}
+		font_family() {
+			const args = [...arguments]
+			const gen = this.generic_fonts
+			let array = []
+			for (let font of args) {
+				if (gen.includes(font)) {
+					array.push(font)
+				} else {
+					array.push(`"${font}"`)
+				}
+			}
+			this._addProp("font-family", array.join(", "))
+			return this
+		}
+		get generic_fonts() {
+			return "serif | sans-serif | cursive | fantasy | monospace".split(" | ")
+		}
 		line_height(v) {
 			this._addProp("line-height", v)
 			return this
