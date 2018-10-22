@@ -255,6 +255,10 @@ Cascade.funcClass = function() {
 			this._addProp("order", int)
 			return this
 		}
+		float(opt) {
+			this._addProp("float", opt)
+			return this
+		}
 		mixin(name) {
 			if (this.c.mixins.hasOwnProperty(name)) {
 				return this.c.mixins[name](this)
