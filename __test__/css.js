@@ -53,6 +53,14 @@ eye.describe("Basic modifiers", () => {
 			return $(C.generateCSS()).Equal(".pointer{cursor:pointer}")
 		}
 	)
+	eye.test("Clear", "node",
+		$ => {
+			C.css = {} // empty cache
+			C(".el")
+				.clear("both")
+			return $(C.generateCSS()).Equal(".el{clear:both}")
+		}
+	)
 	eye.test("Display", "node",
 		$ => {
 			C.css = {} // resets CSS

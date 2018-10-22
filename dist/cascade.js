@@ -169,6 +169,10 @@ Cascade.funcClass = function() {
 			}
 			return this
 		}
+		clear(opt) {
+			this._addProp("clear", opt)
+			return this
+		}
 		constructor(selector, cascade) {
 			this.c = cascade
 			this.s = selector
