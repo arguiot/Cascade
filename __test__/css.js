@@ -137,6 +137,14 @@ eye.describe("Basic modifiers", () => {
 					return $(C.generateCSS()).Equal(".txt{font-family:\"Helvetica\",sans-serif}")
 				}
 			)
+			eye.test("Font Size", "node",
+				$ => {
+					C.css = {} // empty cache
+					C(".txt")
+						.font_size(12)
+					return $(C.generateCSS()).Equal(".txt{font-size:12px}")
+				}
+			)
 		})
 	})
 	eye.describe("Flex Box", () => {
