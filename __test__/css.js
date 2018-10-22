@@ -69,6 +69,16 @@ eye.describe("Basic modifiers", () => {
 			return $(C.generateCSS()).Equal(".flex{display:flex}")
 		}
 	)
+	eye.test("Filter", "node",
+		$ => {
+			C.css = {} // empty cache
+			C("none")
+				.filter("none")
+			C("blur")
+				.filter("blur", "20px")
+			return $(C.generateCSS()).Equal("none{filter:none}blur{filter:blur(20px)}")
+		}
+	)
 	eye.describe("Text", () => {
 		eye.test("Text align", "node",
 			$ => {
