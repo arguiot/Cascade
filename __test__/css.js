@@ -145,6 +145,14 @@ eye.describe("Basic modifiers", () => {
 					return $(C.generateCSS()).Equal(".txt{font-size:12px}")
 				}
 			)
+			eye.test("Font Weight", "node",
+				$ => {
+					C.css = {} // empty cache
+					C(".txt")
+						.font_weight(400)
+					return $(C.generateCSS()).Equal(".txt{font-weight:400}")
+				}
+			)
 		})
 	})
 	eye.describe("Flex Box", () => {

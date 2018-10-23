@@ -328,6 +328,10 @@ Cascade.funcClass = function() {
 			this._addProp("font-size", opt)
 			return this
 		}
+		font_weight(opt) {
+			this._addProp("font-weight", opt)
+			return this
+		}
 		get generic_fonts() {
 			return "serif | sans-serif | cursive | fantasy | monospace".split(" | ")
 		}
