@@ -153,6 +153,14 @@ eye.describe("Basic modifiers", () => {
 					return $(C.generateCSS()).Equal(".txt{font-weight:400}")
 				}
 			)
+			eye.test("Font Variant", "node",
+				$ => {
+					C.css = {} //empty cache
+					C(".txt")
+						.font_variant("no-common-ligatures", "proportional-nums")
+					return $(C.generateCSS()).Equal(".txt{font-variant:no-common-ligatures proportional-nums}")
+				}
+			)
 		})
 	})
 	eye.describe("Flex Box", () => {

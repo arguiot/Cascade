@@ -328,6 +328,11 @@ Cascade.funcClass = function() {
 			this._addProp("font-size", opt)
 			return this
 		}
+		font_variant() {
+			const args = [...arguments]
+			this._addProp("font-variant", args.join(" "))
+			return this
+		}
 		font_weight(opt) {
 			this._addProp("font-weight", opt)
 			return this
