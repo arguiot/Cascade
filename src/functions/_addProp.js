@@ -37,3 +37,7 @@ _addProp(key, value, s = false, n) {
 
 	}
 }
+css() {
+	this._addProp(...arguments)
+	return this
+}
