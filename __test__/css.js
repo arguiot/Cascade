@@ -21,6 +21,18 @@ eye.describe("Basic modifiers", () => {
 			return $(C.generateCSS()).Equal("el{border-radius:5px}")
 		}
 	)
+	eye.test("Animation", "node",
+		$ => {
+			C.css = {} // empty cache
+			C.keyframes("bg", c => {
+				c(C.to)
+					.background("green")
+			})
+			C(".el")
+				.animation("bg", "2s")
+			return $(C.generateCSS()).Equal("@keyframes bg{to{background:green}}.el{animation:bg 2s}")
+		}
+	)
 	eye.test("Background", "node",
 		$ => {
 			C.css = {} // resets CSS

@@ -61,6 +61,10 @@ Cascade.funcClass = function() {
 		
 			}
 		}
+		css() {
+			this._addProp(...arguments)
+			return this
+		}
 		align(param) {
 			switch (param) {
 				case "left":
@@ -76,6 +80,11 @@ Cascade.funcClass = function() {
 					break;
 				default:
 			}
+			return this
+		}
+		animation() {
+			const args = [...arguments]
+			this._addProp("animation", args.join(" "))
 			return this
 		}
 		appendCSS(txt) {
