@@ -5,3 +5,6 @@ onHover(f) {
 	this.s = s
 	return this
 }
+hover() {
+	return this.onHover(...arguments)
+}
