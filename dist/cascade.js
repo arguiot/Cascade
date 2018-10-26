@@ -182,6 +182,11 @@ Cascade.funcClass = function() {
 			this._addProp("clear", opt)
 			return this
 		}
+		click(f) {
+			const func = new Function("el", `document.querySelector('${this.s}').addEventListener(\"click\", () => {const f = ${f.toString()};f(el)})`)
+			this._addFunc(func)
+			return this
+		}
 		constructor(selector, cascade) {
 			this.c = cascade
 			this.s = selector
@@ -281,6 +286,9 @@ Cascade.funcClass = function() {
 			f(this)
 			this.s = s
 			return this
+		}
+		hover() {
+			return this.onHover(...arguments)
 		}
 		color(v) {
 			this._addProp("color", v)

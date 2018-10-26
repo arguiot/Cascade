@@ -41,4 +41,17 @@ eye.describe("CSS based transormations", () => {
 			return $(message).Equal([])
 		}
 	)
+	eye.test("Click", "node",
+		$ => {
+			C.js = [] // empty JS cache
+			C(".button")
+				.click(el => {
+					el.style.background = "green"
+				})
+			const js = C.generateJS()
+			console.log(js)
+			const message = linter.verify(js, options)
+			return $(message).Equal([])
+		}
+	)
 })
