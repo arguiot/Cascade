@@ -134,9 +134,9 @@ Cascade.funcClass = function() {
 			if (args.length == 1) {
 				this._addProp("border", args[0])
 			} else if (args.length == 2) {
-				this._addProp(`border-${args[0]}`, args[1])
+				this._addProp(`border-${args.shift()}`, args.join(' '))
 			} else {
-				throw "[Cascade] Border: wrong arguments"
+				this._addProp("border", args.join(' '))
 			}
 			return this
 		}
@@ -197,6 +197,36 @@ Cascade.funcClass = function() {
 		}
 		cursor(prop) {
 			return this.mouse(prop)
+		}
+		apple_blur() {
+			this._addProp("-webkit-backdrop-filter", "saturate(180%) blur(20px)")
+			this._addProp("backdrop-filter", "saturate(180%) blur(20px)")
+			this.background(255, 255, 255, 0.7)
+			return this
+		}
+		height(opt, u = "px") {
+			this._addProp("height", `${opt}${u}`)
+			return this
+		}
+		max_height(opt, u = "px") {
+			this._addProp("max_height", `${opt}${u}`)
+			return this
+		}
+		max_width(opt, u = "px") {
+			this._addProp("max_width", `${opt}${u}`)
+			return this
+		}
+		min_height(opt, u = "px") {
+			this._addProp("min_height", `${opt}${u}`)
+			return this
+		}
+		min_width(opt, u = "px") {
+			this._addProp("min_width", `${opt}${u}`)
+			return this
+		}
+		width(opt, u = "px") {
+			this._addProp("width", `${opt}${u}`)
+			return this
 		}
 		display(method) {
 			this._addProp("display", method)
@@ -273,6 +303,18 @@ Cascade.funcClass = function() {
 			this._addProp("float", opt)
 			return this
 		}
+		margin() {
+			const args = [...arguments]
+		
+			if (args.length == 1) {
+				this._addProp("margin", args[0])
+			} else if (args.length == 2) {
+				this._addProp(`margin-${args.shift()}`, args.join(' '))
+			} else {
+				this._addProp("margin", args.join(' '))
+			}
+			return this
+		}
 		mixin(name) {
 			if (this.c.mixins.hasOwnProperty(name)) {
 				return this.c.mixins[name](this)
@@ -289,6 +331,51 @@ Cascade.funcClass = function() {
 		}
 		hover() {
 			return this.onHover(...arguments)
+		}
+		outline() {
+			const args = [...arguments]
+			this._addProp("outline", args.join(' '))
+			return this
+		}
+		overflow(opt) {
+			this._addProp("overflow", opt)
+			return this
+		}
+		padding() {
+			const args = [...arguments]
+		
+			if (args.length == 1) {
+				this._addProp("padding", args[0])
+			} else if (args.length == 2) {
+				this._addProp(`padding-${args.shift()}`, args.join(' '))
+			} else {
+				this._addProp("padding", args.join(' '))
+			}
+			return this
+		}
+		position(opt) {
+			this._addProp("position", opt)
+			return this
+		}
+		
+		right(opt) {
+			this._addProp("right", opt)
+			return this
+		}
+		
+		left(opt) {
+			this._addProp("left", opt)
+			return this
+		}
+		
+		top(opt) {
+			this._addProp("top", opt)
+			return this
+		}
+		
+		bottom(opt) {
+			this._addProp("bottom", opt)
+			return this
 		}
 		color(v) {
 			this._addProp("color", v)
@@ -361,8 +448,25 @@ Cascade.funcClass = function() {
 			this._addProp("line-height", v)
 			return this
 		}
+		text() {
+			const args = [...arguments]
+		
+			if (args.length == 1) {
+				this._addProp("text", args[0])
+			} else if (args.length == 2) {
+				this._addProp(`text-${args.shift()}`, args.join(' '))
+			} else {
+				this._addProp("text", args.join(' '))
+			}
+			return this
+		}
 		text_align(property) {
 			this._addProp("text-align", property)
+			return this
+		}
+		text_decoration() {
+			const args = [...arguments]
+			this._addProp("text-decoration", args.join(" "))
 			return this
 		}
 		text_shadow() {
@@ -526,6 +630,95 @@ Cascade.loadModule = function(object) {
 Cascade.mode = 0 // 0: Normal
 				 // 1: Media Query
 				 // 2: Keyframes
+Cascade.normalize = function() {
+	this.init("html")
+		.line_height(1.15)
+		.css('-webkit-text-size-adjust', "100%")
+	this.body.margin(0)
+	this.init("h1")
+		.font_size("2em")
+		.margin("0.67em", 0,'')
+	this.init("hr")
+		.css("box-sizing", "content-box")
+		.height(0)
+		.overflow("visible")
+	this.init("pre")
+		.font_family("monospace")
+		.font_size("1em")
+	this.init("a")
+		.background("transparent")
+	this.init("abbr[title]")
+		.border("bottom", "none")
+		.text_decoration("underline", "dotted")
+	this.init("b, strong")
+		.font_weight("bolder")
+	this.init("code, kbp, samp")
+		.font_family("monospace")
+		.font_size("1em")
+	this.init("small")
+		.font_size("80%")
+	this.init("sub, sup")
+		.font_size("75%")
+		.line_height(0)
+		.position("relative")
+		.css("vertical-align", "baseline")
+	this.init("sub")
+		.bottom("-0.25em")
+	this.init("sup")
+		.top("-0.5em")
+	this.init("img")
+		.border("style", "none")
+	this.init("button, input, optgroup, select, textarea")
+		.font_family("inherit")
+		.font_size("100%")
+		.line_height(1.15)
+		.margin(0)
+	this.init("button, input")
+		.overflow("visible")
+	this.init("button, select")
+		.text("transform", "none")
+	this.init('button, [type="button"], [type="reset"], [type="submit"]')
+		.css("-webkit-appearance", "button")
+	this.init('button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner')
+		.border("style", "none")
+		.padding(0)
+	this.init('button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring')
+		.outline("1px", "dotted", "ButtonText")
+	this.init("fieldset")
+		.padding("0.35em", "0.75em", "0.625em")
+	this.init("legend")
+		.css("box-sizing", "border-box")
+		.color('inherit')
+		.display("table")
+		.max_width(100, "%")
+		.padding(0)
+		.css("white-space", "normal")
+	this.init("progress")
+		.css("vertical-align", "baseline")
+	this.init("textarea")
+		.overflow("auto")
+	this.init('[type="checkbox"], [type="radio"]')
+		.css("box-sizing", "border-box")
+		.padding(0)
+	this.init('[type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button')
+		.height("auto")
+	this.init('[type="search"]')
+		.css('-webkit-appearance', "textfield")
+		.css("outline-offset", "-2px")
+	this.init('[type="search"]::-webkit-search-decoration')
+		.css("-webkit-appearance", "none")
+	this.init("::-webkit-file-upload-button")
+		.css("-webkit-appearance", "button")
+		.css("font", "inherit")
+	this.init("details")
+		.display("block")
+	this.init("summary")
+		.display("list-item")
+	this.init("template")
+		.display("none")
+	this.init("[hidden]")
+		.display("none")
+}
 Cascade.save = function(pathCSS, pathJS) {
 	const fs = require("fs");
 	const streamCSS = fs.createWriteStream(pathCSS);

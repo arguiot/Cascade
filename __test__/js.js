@@ -49,7 +49,6 @@ eye.describe("CSS based transormations", () => {
 					el.style.background = "green"
 				})
 			const js = C.generateJS()
-			console.log(js)
 			const message = linter.verify(js, options)
 			return $(message).Equal([])
 		}
