@@ -5,7 +5,7 @@ Cascade.normalize = function() {
 	this.body.margin(0)
 	this.init("h1")
 		.font_size("2em")
-		.margin("0.67em", 0,'')
+		.margin("0.67em", 0)
 	this.init("hr")
 		.css("box-sizing", "content-box")
 		.height(0)
