@@ -1,6 +1,6 @@
 /*
 
- Cascade - An innovative CSS preprocessor made of JavaScript
+ Cascade - An innovative CSS generator made of JavaScript
 
  Copyright © Arthur Guiot 2018
 
