@@ -10,3 +10,6 @@ border() {
 	}
 	return this
 }
+radius(value) {
+	return this.border("radius", value)
+}
