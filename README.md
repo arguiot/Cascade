@@ -1,7 +1,7 @@
 # Cascade
 An innovative CSS preprocessor made of JavaScript (work in progress)
 
-Exemple of what you can do with Cascade:
+Example of what you can do with Cascade:
 ```js
 const C = require("cascade");
 
